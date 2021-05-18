@@ -71,7 +71,6 @@ A simple scanner for extracting Java package API information, this project uses 
 ```
 
 # Thanks
-# 三、参考内容/感谢
 [《プログラミング言語を作る》 - ［日］ 前桥和弥](https://book.douban.com/subject/25735333/)
 
 [Compiler-zsthampi](https://github.com/zsthampi/Compiler)
