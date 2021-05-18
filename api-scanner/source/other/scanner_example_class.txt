@@ -1,0 +1,1316 @@
+C:\Users\Administrator\AppData\Local\Programs\Python\Python39\python.exe E:/ZHAOWEN/RESPONSE/team-1186152014/api-scanner/main.py
+2021-03-22 12:08:59,308 - root - INFO - 开始扫描文件
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：/*
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：* Copyright 1999-2017 Alibaba Group.
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：*
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：* Licensed under the Apache License, Version 2.0 (the "License");
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：* you may not use this file except in compliance with the License.
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：* You may obtain a copy of the License at
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：*
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：*      http://www.apache.org/licenses/LICENSE-2.0
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：*
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：* Unless required by applicable law or agreed to in writing, software
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：* distributed under the License is distributed on an "AS IS" BASIS,
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：* See the License for the specific language governing permissions and
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：* limitations under the License.
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：package com.alibaba.fastjson;
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：import java.io.IOException;
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：import java.io.InputStream;
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：import java.io.OutputStream;
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：import java.io.Writer;
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：import java.lang.reflect.Array;
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：import java.lang.reflect.Type;
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：import java.nio.ByteBuffer;
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：import java.nio.CharBuffer;
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：import java.nio.charset.Charset;
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：import java.nio.charset.CharsetDecoder;
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：import java.util.*;
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：import java.util.concurrent.ConcurrentHashMap;
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：import com.alibaba.fastjson.parser.*;
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：import com.alibaba.fastjson.parser.deserializer.ExtraProcessor;
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：import com.alibaba.fastjson.parser.deserializer.ExtraTypeProvider;
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：import com.alibaba.fastjson.parser.deserializer.FieldTypeResolver;
+2021-03-22 12:08:59,324 - root - INFO - 不是方法方法：import com.alibaba.fastjson.parser.deserializer.ParseProcess;
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：import com.alibaba.fastjson.serializer.*;
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：import com.alibaba.fastjson.util.IOUtils;
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：import com.alibaba.fastjson.util.TypeUtils;
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：* This is the main class for using Fastjson. You usually call these two methods {@link #toJSONString(Object)} and {@link #parseObject(String, Class)}.
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：*
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：* <p>Here is an example of how fastjson is used for a simple Class:
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：*
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：* <pre>
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：* Model model = new Model();
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：* String json = JSON.toJSONString(model); // serializes model to Json
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：* Model model2 = JSON.parseObject(json, Model.class); // deserializes json into model2
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：* </pre>
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：*
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：* <p>If the object that your are serializing/deserializing is a {@code ParameterizedType}
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：* (i.e. contains at least one type parameter and may be an array) then you must use the
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：* {@link #toJSONString(Object)} or {@link #parseObject(String, Type, Feature[])} method.  Here is an
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：* example for serializing and deserialing a {@code ParameterizedType}:
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：*
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：* <pre>
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：* String json = "[{},...]";
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：* Type listType = new TypeReference&lt;List&lt;Model&gt;&gt;() {}.getType();
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：* List&lt;Model&gt; modelList = JSON.parseObject(json, listType);
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：* </pre>
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：*
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：* @see com.alibaba.fastjson.TypeReference
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：*
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：* @author wenshao[szujobs@hotmail.com]
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：public abstract class JSON implements JSONStreamAware, JSONAware {
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：public static TimeZone         defaultTimeZone      = TimeZone.getDefault();
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：public static Locale           defaultLocale        = Locale.getDefault();
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：public static String           DEFAULT_TYPE_KEY     = "@type";
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：static final SerializeFilter[] emptyFilters         = new SerializeFilter[0];
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：public static String           DEFFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：public static int              DEFAULT_PARSER_FEATURE;
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：public static int              DEFAULT_GENERATE_FEATURE;
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：private static final ConcurrentHashMap<Type, Type> mixInsMapper = new ConcurrentHashMap<Type, Type>(16);
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：static {
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：int features = 0;
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：features |= Feature.AutoCloseSource.getMask();
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：features |= Feature.InternFieldNames.getMask();
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：features |= Feature.UseBigDecimal.getMask();
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：features |= Feature.AllowUnQuotedFieldNames.getMask();
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：features |= Feature.AllowSingleQuotes.getMask();
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：features |= Feature.AllowArbitraryCommas.getMask();
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：features |= Feature.SortFeidFastMatch.getMask();
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：features |= Feature.IgnoreNotMatch.getMask();
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：DEFAULT_PARSER_FEATURE = features;
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：static {
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：int features = 0;
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：features |= SerializerFeature.QuoteFieldNames.getMask();
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：features |= SerializerFeature.SkipTransientField.getMask();
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：features |= SerializerFeature.WriteEnumUsingName.getMask();
+2021-03-22 12:08:59,340 - root - INFO - 不是方法方法：features |= SerializerFeature.SortField.getMask();
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：DEFAULT_GENERATE_FEATURE = features;
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：config(IOUtils.DEFAULT_PROPERTIES);
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,355 - root - INFO - 方法：private static void config(Properties properties) {
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：{
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：String featuresProperty = properties.getProperty("fastjson.serializerFeatures.MapSortField");
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：int mask = SerializerFeature.MapSortField.getMask();
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：if ("true".equals(featuresProperty)) {
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：DEFAULT_GENERATE_FEATURE |= mask;
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：} else if ("false".equals(featuresProperty)) {
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：DEFAULT_GENERATE_FEATURE &= ~mask;
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：{
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：if ("true".equals(properties.getProperty("parser.features.NonStringKeyAsString"))) {
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：DEFAULT_PARSER_FEATURE |= Feature.NonStringKeyAsString.getMask();
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：{
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：if ("true".equals(properties.getProperty("parser.features.ErrorOnEnumNotMatch"))
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：|| "true".equals(properties.getProperty("fastjson.parser.features.ErrorOnEnumNotMatch")))
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：{
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：DEFAULT_PARSER_FEATURE |= Feature.ErrorOnEnumNotMatch.getMask();
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：{
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：if ("false".equals(properties.getProperty("fastjson.asmEnable"))) {
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：ParserConfig.global.setAsmEnable(false);
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：SerializeConfig.globalInstance.setAsmEnable(false);
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：* config default type key
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：* @since 1.2.14
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,355 - root - INFO - 方法：public static void setDefaultTypeKey(String typeKey) {
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：DEFAULT_TYPE_KEY = typeKey;
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：ParserConfig.global.symbolTable.addSymbol(typeKey,
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：0,
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：typeKey.length(),
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：typeKey.hashCode(), true);
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,355 - root - INFO - 方法：public static Object parse(String text) {
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：return parse(text, DEFAULT_PARSER_FEATURE);
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：*
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：* @since 1.2.38
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,355 - root - INFO - 方法：public static Object parse(String text, ParserConfig config) {
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：return parse(text, config, DEFAULT_PARSER_FEATURE);
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：*
+2021-03-22 12:08:59,355 - root - INFO - 不是方法方法：* @since 1.2.68
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,371 - root - INFO - 方法：public static Object parse(String text, ParserConfig config, Feature... features) {
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：int featureValues = DEFAULT_PARSER_FEATURE;
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：for (Feature feature : features) {
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：featureValues = Feature.config(featureValues, feature, true);
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：return parse(text, config, featureValues);
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：*
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：* @since 1.2.38
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,371 - root - INFO - 方法：public static Object parse(String text, ParserConfig config, int features) {
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：if (text == null) {
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：return null;
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：DefaultJSONParser parser = new DefaultJSONParser(text, config, features);
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：Object value = parser.parse();
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：parser.handleResovleTask(value);
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：parser.close();
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：return value;
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,371 - root - INFO - 方法：public static Object parse(String text, int features) {
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：return parse(text, ParserConfig.getGlobalInstance(), features);
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：public static Object parse(byte[] input, Feature... features) {
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：char[] chars = allocateChars(input.length);
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：int len = IOUtils.decodeUTF8(input, 0, input.length, chars);
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：if (len < 0) {
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：return null;
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：return parse(new String(chars, 0, len), features);
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：public static Object parse(byte[] input, int off, int len, CharsetDecoder charsetDecoder, Feature... features) {
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：if (input == null || input.length == 0) {
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：return null;
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：int featureValues = DEFAULT_PARSER_FEATURE;
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：for (Feature feature : features) {
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：featureValues = Feature.config(featureValues, feature, true);
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：return parse(input, off, len, charsetDecoder, featureValues);
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,371 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：public static Object parse(byte[] input, int off, int len, CharsetDecoder charsetDecoder, int features) {
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：charsetDecoder.reset();
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：int scaleLength = (int) (len * (double) charsetDecoder.maxCharsPerByte());
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：char[] chars = allocateChars(scaleLength);
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：ByteBuffer byteBuf = ByteBuffer.wrap(input, off, len);
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：CharBuffer charBuf = CharBuffer.wrap(chars);
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：IOUtils.decode(charsetDecoder, byteBuf, charBuf);
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：int position = charBuf.position();
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：DefaultJSONParser parser = new DefaultJSONParser(chars, position, ParserConfig.getGlobalInstance(), features);
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：Object value = parser.parse();
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：parser.handleResovleTask(value);
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：parser.close();
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：return value;
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,387 - root - INFO - 方法：public static Object parse(String text, Feature... features) {
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：int featureValues = DEFAULT_PARSER_FEATURE;
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：for (Feature feature : features) {
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：featureValues = Feature.config(featureValues, feature, true);
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：return parse(text, featureValues);
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,387 - root - INFO - 方法：public static JSONObject parseObject(String text, Feature... features) {
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：return (JSONObject) parse(text, features);
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,387 - root - INFO - 方法：public static JSONObject parseObject(String text) {
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：Object obj = parse(text);
+2021-03-22 12:08:59,387 - root - INFO - 方法：if (obj instanceof JSONObject) {
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：return (JSONObject) obj;
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,387 - root - INFO - 方法：try {
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：return (JSONObject) JSON.toJSON(obj);
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：} catch (RuntimeException e) {
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：throw new JSONException("can not cast to JSONObject.", e);
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：* <pre>
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：* String jsonStr = "[{\"id\":1001,\"name\":\"Jobs\"}]";
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：* List&lt;Model&gt; models = JSON.parseObject(jsonStr, new TypeReference&lt;List&lt;Model&gt;&gt;() {});
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：* </pre>
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：* @param text json string
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：* @param type type refernce
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：* @param features
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：* @return
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,387 - root - INFO - 不是方法方法：@SuppressWarnings("unchecked")
+2021-03-22 12:08:59,387 - root - INFO - 方法：public static <T> T parseObject(String text, TypeReference<T> type, Feature... features) {
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：return (T) parseObject(text, type.type, ParserConfig.global, DEFAULT_PARSER_FEATURE, features);
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：*
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：* This method deserializes the specified Json into an object of the specified class. It is not
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：* suitable to use if the specified class is a generic type since it will not have the generic
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：* type information because of the Type Erasure feature of Java. Therefore, this method should not
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：* be used if the desired type is a generic type. Note that this method works fine if the any of
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：* the fields of the specified object are generics, just the object itself should not be a
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：* generic type. For the cases when the object is of generic type, invoke
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：* {@link #parseObject(String, Type, Feature[])}. If you have the Json in a {@link InputStream} instead of
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：* a String, use {@link #parseObject(InputStream, Type, Feature[])} instead.
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：*
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：* @param json the string from which the object is to be deserialized
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：* @param clazz the class of T
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：* @param features parser features
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：* @return an object of type T from the string
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：* classOfT
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：@SuppressWarnings("unchecked")
+2021-03-22 12:08:59,402 - root - INFO - 方法：public static <T> T parseObject(String json, Class<T> clazz, Feature... features) {
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：return (T) parseObject(json, (Type) clazz, ParserConfig.global, null, DEFAULT_PARSER_FEATURE, features);
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：@SuppressWarnings("unchecked")
+2021-03-22 12:08:59,402 - root - INFO - 方法：public static <T> T parseObject(String text, Class<T> clazz, ParseProcess processor, Feature... features) {
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：return (T) parseObject(text, (Type) clazz, ParserConfig.global, processor, DEFAULT_PARSER_FEATURE,
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：features);
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：* This method deserializes the specified Json into an object of the specified type. This method
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：* is useful if the specified object is a generic type. For non-generic objects, use
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：* {@link #parseObject(String, Class, Feature[])} instead. If you have the Json in a {@link InputStream} instead of
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：* a String, use {@link #parseObject(InputStream, Type, Feature[])} instead.
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：*
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：* @param <T> the type of the desired object
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：* @param json the string from which the object is to be deserialized
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：* @param type The specific genericized type of src. You can obtain this type by using the
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：* {@link com.alibaba.fastjson.TypeReference} class. For example, to get the type for
+2021-03-22 12:08:59,402 - root - INFO - 不是方法方法：* {@code Collection<Foo>}, you should use:
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：* <pre>
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：* Type type = new TypeReference&lt;Collection&lt;Foo&gt;&gt;(){}.getType();
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：* </pre>
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：* @return an object of type T from the string
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：@SuppressWarnings("unchecked")
+2021-03-22 12:08:59,418 - root - INFO - 方法：public static <T> T parseObject(String json, Type type, Feature... features) {
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：return (T) parseObject(json, type, ParserConfig.global, DEFAULT_PARSER_FEATURE, features);
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：@SuppressWarnings("unchecked")
+2021-03-22 12:08:59,418 - root - INFO - 方法：public static <T> T parseObject(String input, Type clazz, ParseProcess processor, Feature... features) {
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：return (T) parseObject(input, clazz, ParserConfig.global, processor, DEFAULT_PARSER_FEATURE, features);
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：@SuppressWarnings("unchecked")
+2021-03-22 12:08:59,418 - root - INFO - 方法：public static <T> T parseObject(String input, Type clazz, int featureValues, Feature... features) {
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：if (input == null) {
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：return null;
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：for (Feature feature : features) {
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：featureValues = Feature.config(featureValues, feature, true);
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：DefaultJSONParser parser = new DefaultJSONParser(input, ParserConfig.getGlobalInstance(), featureValues);
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：T value = (T) parser.parseObject(clazz);
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：parser.handleResovleTask(value);
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：parser.close();
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：return (T) value;
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：* @since 1.2.11
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,418 - root - INFO - 方法：public static <T> T parseObject(String input, Type clazz, ParserConfig config, Feature... features) {
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：return parseObject(input, clazz, config, null, DEFAULT_PARSER_FEATURE, features);
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：public static <T> T parseObject(String input, Type clazz, ParserConfig config, int featureValues,
+2021-03-22 12:08:59,418 - root - INFO - 方法：Feature... features) {
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：return parseObject(input, clazz, config, null, featureValues, features);
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：@SuppressWarnings("unchecked")
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：public static <T> T parseObject(String input, Type clazz, ParserConfig config, ParseProcess processor,
+2021-03-22 12:08:59,418 - root - INFO - 方法：int featureValues, Feature... features) {
+2021-03-22 12:08:59,418 - root - INFO - 不是方法方法：if (input == null || input.length() == 0) {
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：return null;
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：if (features != null) {
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：for (Feature feature : features) {
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：featureValues |= feature.mask;
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：DefaultJSONParser parser = new DefaultJSONParser(input, config, featureValues);
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：if (processor != null) {
+2021-03-22 12:08:59,433 - root - INFO - 方法：if (processor instanceof ExtraTypeProvider) {
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：parser.getExtraTypeProviders().add((ExtraTypeProvider) processor);
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,433 - root - INFO - 方法：if (processor instanceof ExtraProcessor) {
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：parser.getExtraProcessors().add((ExtraProcessor) processor);
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,433 - root - INFO - 方法：if (processor instanceof FieldTypeResolver) {
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：parser.setFieldTypeResolver((FieldTypeResolver) processor);
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：T value = (T) parser.parseObject(clazz, null);
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：parser.handleResovleTask(value);
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：parser.close();
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：return (T) value;
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：@SuppressWarnings("unchecked")
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：public static <T> T parseObject(byte[] bytes, Type clazz, Feature... features) {
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：return (T) parseObject(bytes, 0, bytes.length, IOUtils.UTF8, clazz, features);
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：* @since 1.2.11
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：@SuppressWarnings("unchecked")
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：public static <T> T parseObject(byte[] bytes, int offset, int len, Charset charset, Type clazz, Feature... features) {
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：return (T) parseObject(bytes, offset, len, charset, clazz, ParserConfig.global, null, DEFAULT_PARSER_FEATURE, features);
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：* @since 1.2.55
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：@SuppressWarnings("unchecked")
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：public static <T> T parseObject(byte[] bytes,
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：Charset charset,
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：Type clazz,
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：ParserConfig config,
+2021-03-22 12:08:59,433 - root - INFO - 不是方法方法：ParseProcess processor,
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：int featureValues,
+2021-03-22 12:08:59,449 - root - INFO - 方法：Feature... features) {
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：return (T) parseObject(bytes, 0, bytes.length, charset, clazz, config, processor, featureValues, features);
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：* @since 1.2.55
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：@SuppressWarnings("unchecked")
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：public static <T> T parseObject(byte[] bytes, int offset, int len,
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：Charset charset,
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：Type clazz,
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：ParserConfig config,
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：ParseProcess processor,
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：int featureValues,
+2021-03-22 12:08:59,449 - root - INFO - 方法：Feature... features) {
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：if (charset == null) {
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：charset = IOUtils.UTF8;
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：String strVal;
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：if (charset == IOUtils.UTF8) {
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：char[] chars = allocateChars(bytes.length);
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：int chars_len = IOUtils.decodeUTF8(bytes, offset, len, chars);
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：if (chars_len < 0) {
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：return null;
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：strVal = new String(chars, 0, chars_len);
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：} else {
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：if (len < 0) {
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：return null;
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：strVal = new String(bytes, offset, len, charset);
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：return (T) parseObject(strVal, clazz, config, processor, featureValues, features);
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：@SuppressWarnings("unchecked")
+2021-03-22 12:08:59,449 - root - INFO - 方法：public static <T> T parseObject(byte[] input, int off, int len, CharsetDecoder charsetDecoder, Type clazz, Feature... features) {
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：charsetDecoder.reset();
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：int scaleLength = (int) (len * (double) charsetDecoder.maxCharsPerByte());
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：char[] chars = allocateChars(scaleLength);
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：ByteBuffer byteBuf = ByteBuffer.wrap(input, off, len);
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：CharBuffer charByte = CharBuffer.wrap(chars);
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：IOUtils.decode(charsetDecoder, byteBuf, charByte);
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：int position = charByte.position();
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：return (T) parseObject(chars, position, clazz, features);
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：@SuppressWarnings("unchecked")
+2021-03-22 12:08:59,449 - root - INFO - 不是方法方法：public static <T> T parseObject(char[] input, int length, Type clazz, Feature... features) {
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：if (input == null || input.length == 0) {
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：return null;
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：int featureValues = DEFAULT_PARSER_FEATURE;
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：for (Feature feature : features) {
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：featureValues = Feature.config(featureValues, feature, true);
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：DefaultJSONParser parser = new DefaultJSONParser(input, length, ParserConfig.getGlobalInstance(), featureValues);
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：T value = (T) parser.parseObject(clazz);
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：parser.handleResovleTask(value);
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：parser.close();
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：return (T) value;
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：* @since 1.2.11
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：@SuppressWarnings("unchecked")
+2021-03-22 12:08:59,465 - root - INFO - 方法：public static <T> T parseObject(InputStream is, Type type, Feature... features) throws IOException {
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：return (T) parseObject(is, IOUtils.UTF8, type, features);
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：* @since 1.2.11
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：@SuppressWarnings("unchecked")
+2021-03-22 12:08:59,465 - root - INFO - 方法：public static <T> T parseObject(InputStream is, Charset charset, Type type, Feature... features) throws IOException {
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：return (T) parseObject(is, charset, type, ParserConfig.global, features);
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：* @since 1.2.55
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：@SuppressWarnings("unchecked")
+2021-03-22 12:08:59,465 - root - INFO - 方法：public static <T> T parseObject(InputStream is, Charset charset, Type type, ParserConfig config, Feature... features) throws IOException {
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：return (T) parseObject(is, charset, type, config, null, DEFAULT_PARSER_FEATURE, features);
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：* @since 1.2.55
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：@SuppressWarnings("unchecked")
+2021-03-22 12:08:59,465 - root - INFO - 方法：public static <T> T parseObject(InputStream is, Charset charset, Type type, ParserConfig config, ParseProcess processor, int featureValues, Feature... features) throws IOException {
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：if (charset == null) {
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：charset = IOUtils.UTF8;
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：byte[] bytes = allocateBytes(1024 * 64);
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：int offset = 0;
+2021-03-22 12:08:59,465 - root - INFO - 不是方法方法：for (;;) {
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：int readCount = is.read(bytes, offset, bytes.length - offset);
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：if (readCount == -1) {
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：break;
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：offset += readCount;
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：if (offset == bytes.length) {
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：byte[] newBytes = new byte[bytes.length * 3 / 2];
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：System.arraycopy(bytes, 0, newBytes, 0, bytes.length);
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：bytes = newBytes;
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：return (T) parseObject(bytes, 0, offset, charset, type, config, processor, featureValues, features);
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,480 - root - INFO - 方法：public static <T> T parseObject(String text, Class<T> clazz) {
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：return parseObject(text, clazz, new Feature[0]);
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,480 - root - INFO - 方法：public static JSONArray parseArray(String text) {
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：return parseArray(text, ParserConfig.global);
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,480 - root - INFO - 方法：public static JSONArray parseArray(String text, ParserConfig parserConfig) {
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：if (text == null) {
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：return null;
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：DefaultJSONParser parser = new DefaultJSONParser(text, parserConfig);
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：JSONArray array;
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：JSONLexer lexer = parser.lexer;
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：if (lexer.token() == JSONToken.NULL) {
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：lexer.nextToken();
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：array = null;
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：} else if (lexer.token() == JSONToken.EOF) {
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：array = null;
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：} else {
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：array = new JSONArray();
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：parser.parseArray(array);
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：parser.handleResovleTask(array);
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：parser.close();
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：return array;
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,480 - root - INFO - 方法：public static <T> List<T> parseArray(String text, Class<T> clazz) {
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：return parseArray(text, clazz, ParserConfig.global);
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,480 - root - INFO - 方法：public static <T> List<T> parseArray(String text, Class<T> clazz, ParserConfig config) {
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：if (text == null) {
+2021-03-22 12:08:59,480 - root - INFO - 不是方法方法：return null;
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：List<T> list;
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：DefaultJSONParser parser = new DefaultJSONParser(text, config);
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：JSONLexer lexer = parser.lexer;
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：int token = lexer.token();
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：if (token == JSONToken.NULL) {
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：lexer.nextToken();
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：list = null;
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：} else if (token == JSONToken.EOF && lexer.isBlankInput()) {
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：list = null;
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：} else {
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：list = new ArrayList<T>();
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：parser.parseArray(clazz, list);
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：parser.handleResovleTask(list);
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：parser.close();
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：return list;
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：public static List<Object> parseArray(String text, Type[] types) {
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：return parseArray(text, types, ParserConfig.global);
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：public static List<Object> parseArray(String text, Type[] types, ParserConfig config) {
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：if (text == null) {
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：return null;
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：List<Object> list;
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：DefaultJSONParser parser = new DefaultJSONParser(text, config);
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：Object[] objectArray = parser.parseArray(types);
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：if (objectArray == null) {
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：list = null;
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：} else {
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：list = Arrays.asList(objectArray);
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：parser.handleResovleTask(list);
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：parser.close();
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：return list;
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：* This method serializes the specified object into its equivalent Json representation. Note that this method works fine if the any of the object fields are of generic type,
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：* just the object itself should not be of a generic type. If you want to write out the object to a
+2021-03-22 12:08:59,496 - root - INFO - 不是方法方法：* {@link Writer}, use {@link #writeJSONString(Writer, Object, SerializerFeature[])} instead.
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：*
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：* @param object the object for which json representation is to be created setting for fastjson
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：* @return Json representation of {@code object}.
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,512 - root - INFO - 方法：public static String toJSONString(Object object) {
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：return toJSONString(object, emptyFilters);
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,512 - root - INFO - 方法：public static String toJSONString(Object object, SerializerFeature... features) {
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：return toJSONString(object, DEFAULT_GENERATE_FEATURE, features);
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：* @since 1.2.11
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,512 - root - INFO - 方法：public static String toJSONString(Object object, int defaultFeatures, SerializerFeature... features) {
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：SerializeWriter out = new SerializeWriter((Writer) null, defaultFeatures, features);
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,512 - root - INFO - 方法：try {
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：JSONSerializer serializer = new JSONSerializer(out);
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：serializer.write(object);
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：return out.toString();
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：} finally {
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：out.close();
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：* @since 1.1.14
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：public static String toJSONStringWithDateFormat(Object object, String dateFormat,
+2021-03-22 12:08:59,512 - root - INFO - 方法：SerializerFeature... features) {
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：return toJSONString(object, SerializeConfig.globalInstance, null, dateFormat, DEFAULT_GENERATE_FEATURE, features);
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,512 - root - INFO - 方法：public static String toJSONString(Object object, SerializeFilter filter, SerializerFeature... features) {
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：return toJSONString(object, SerializeConfig.globalInstance, new SerializeFilter[] {filter}, null, DEFAULT_GENERATE_FEATURE, features);
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：public static String toJSONString(Object object, SerializeFilter[] filters, SerializerFeature... features) {
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：return toJSONString(object, SerializeConfig.globalInstance, filters, null, DEFAULT_GENERATE_FEATURE, features);
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：public static byte[] toJSONBytes(Object object, SerializerFeature... features) {
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：return toJSONBytes(object, DEFAULT_GENERATE_FEATURE, features);
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：public static byte[] toJSONBytes(Object object, SerializeFilter filter, SerializerFeature... features) {
+2021-03-22 12:08:59,512 - root - INFO - 不是方法方法：return toJSONBytes(object, SerializeConfig.globalInstance, new SerializeFilter[] {filter}, DEFAULT_GENERATE_FEATURE, features);
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：* @since 1.2.11
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：public static byte[] toJSONBytes(Object object, int defaultFeatures, SerializerFeature... features) {
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：return toJSONBytes(object, SerializeConfig.globalInstance, defaultFeatures, features);
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,527 - root - INFO - 方法：public static String toJSONString(Object object, SerializeConfig config, SerializerFeature... features) {
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：return toJSONString(object, config, (SerializeFilter) null, features);
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,527 - root - INFO - 方法：public static String toJSONString(Object object, SerializeConfig config, SerializeFilter filter, SerializerFeature... features) {
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：return toJSONString(object, config, new SerializeFilter[] {filter}, null, DEFAULT_GENERATE_FEATURE, features);
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,527 - root - INFO - 方法：public static String toJSONString(Object object, SerializeConfig config, SerializeFilter[] filters, SerializerFeature... features) {
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：return toJSONString(object, config, filters, null, DEFAULT_GENERATE_FEATURE, features);
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：* @since 1.2.9
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：* @return
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,527 - root - INFO - 方法：public static String toJSONString(Object object, SerializeConfig config, SerializeFilter[] filters, String dateFormat, int defaultFeatures, SerializerFeature... features) {
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：SerializeWriter out = new SerializeWriter(null, defaultFeatures, features);
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,527 - root - INFO - 方法：try {
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：JSONSerializer serializer = new JSONSerializer(out, config);
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：if (dateFormat != null && dateFormat.length() != 0) {
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：serializer.setDateFormat(dateFormat);
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：serializer.config(SerializerFeature.WriteDateUseDateFormat, true);
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：if (filters != null) {
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：for (SerializeFilter filter : filters) {
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：serializer.addFilter(filter);
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：serializer.write(object);
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：return out.toString();
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：} finally {
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：out.close();
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,527 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：* @deprecated
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,543 - root - INFO - 方法：public static String toJSONStringZ(Object object, SerializeConfig mapping, SerializerFeature... features) {
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：return toJSONString(object, mapping, emptyFilters, null, 0, features);
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：* @since 1.2.42
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：public static byte[] toJSONBytes(Object object, SerializeConfig config, SerializerFeature... features) {
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：return toJSONBytes(object, config, emptyFilters, DEFAULT_GENERATE_FEATURE, features);
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：* @since 1.2.11
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：public static byte[] toJSONBytes(Object object, SerializeConfig config, int defaultFeatures, SerializerFeature... features) {
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：return toJSONBytes(object, config, emptyFilters, defaultFeatures, features);
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：* @since 1.2.42
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：public static byte[] toJSONBytes(Object object, SerializeFilter[] filters, SerializerFeature... features) {
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：return toJSONBytes(object, SerializeConfig.globalInstance, filters, DEFAULT_GENERATE_FEATURE, features);
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：public static byte[] toJSONBytes(Object object, SerializeConfig config, SerializeFilter filter, SerializerFeature... features) {
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：return toJSONBytes(object, config, new SerializeFilter[] {filter}, DEFAULT_GENERATE_FEATURE, features);
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：* @since 1.2.42
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：public static byte[] toJSONBytes(Object object, SerializeConfig config, SerializeFilter[] filters, int defaultFeatures, SerializerFeature... features) {
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：return toJSONBytes(object, config, filters, null, defaultFeatures, features);
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：* @since 1.2.55
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：public static byte[] toJSONBytes(Object object, SerializeConfig config, SerializeFilter[] filters, String dateFormat, int defaultFeatures, SerializerFeature... features) {
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：return toJSONBytes(IOUtils.UTF8, object, config, filters, dateFormat, defaultFeatures, features);
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,543 - root - INFO - 不是方法方法：* @since 1.2.55
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,558 - root - INFO - 方法：public static byte[] toJSONBytes(Charset charset, Object object, SerializeConfig config, SerializeFilter[] filters, String dateFormat, int defaultFeatures, SerializerFeature... features) {
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：SerializeWriter out = new SerializeWriter(null, defaultFeatures, features);
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,558 - root - INFO - 方法：try {
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：JSONSerializer serializer = new JSONSerializer(out, config);
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：if (dateFormat != null && dateFormat.length() != 0) {
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：serializer.setDateFormat(dateFormat);
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：serializer.config(SerializerFeature.WriteDateUseDateFormat, true);
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：if (filters != null) {
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：for (SerializeFilter filter : filters) {
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：serializer.addFilter(filter);
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：serializer.write(object);
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：return out.toBytes(charset);
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：} finally {
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：out.close();
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：* Use the date format in FastJsonConfig to serialize JSON
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：*
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：* @param  dateFormat the date format in FastJsonConfigs
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：* @since 1.2.55
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,558 - root - INFO - 方法：public static byte[] toJSONBytesWithFastJsonConfig(Charset charset, Object object, SerializeConfig config, SerializeFilter[] filters, String dateFormat, int defaultFeatures, SerializerFeature... features) {
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：SerializeWriter out = new SerializeWriter(null, defaultFeatures, features);
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,558 - root - INFO - 方法：try {
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：JSONSerializer serializer = new JSONSerializer(out, config);
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：if (dateFormat != null && dateFormat.length() != 0) {
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：serializer.setFastJsonConfigDateFormatPattern(dateFormat);
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：serializer.config(SerializerFeature.WriteDateUseDateFormat, true);
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：if (filters != null) {
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：for (SerializeFilter filter : filters) {
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：serializer.addFilter(filter);
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：serializer.write(object);
+2021-03-22 12:08:59,558 - root - INFO - 不是方法方法：return out.toBytes(charset);
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：} finally {
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：out.close();
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,574 - root - INFO - 方法：public static String toJSONString(Object object, boolean prettyFormat) {
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：if (!prettyFormat) {
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：return toJSONString(object);
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：return toJSONString(object, SerializerFeature.PrettyFormat);
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：* @deprecated use writeJSONString
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,574 - root - INFO - 方法：public static void writeJSONStringTo(Object object, Writer writer, SerializerFeature... features) {
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：writeJSONString(writer, object, features);
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：* This method serializes the specified object into its equivalent json representation.
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：*
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：* @param writer Writer to which the json representation needs to be written
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：* @param object the object for which json representation is to be created setting for fastjson
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：* @param features serializer features
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：* @since 1.2.11
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,574 - root - INFO - 方法：public static void writeJSONString(Writer writer, Object object, SerializerFeature... features) {
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：writeJSONString(writer, object, JSON.DEFAULT_GENERATE_FEATURE, features);
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：* @since 1.2.11
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,574 - root - INFO - 方法：public static void writeJSONString(Writer writer, Object object, int defaultFeatures, SerializerFeature... features) {
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：SerializeWriter out = new SerializeWriter(writer, defaultFeatures, features);
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,574 - root - INFO - 方法：try {
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：JSONSerializer serializer = new JSONSerializer(out);
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：serializer.write(object);
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：} finally {
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：out.close();
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：* write object as json to OutputStream
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：* @param os output stream
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：* @param object
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：* @param features serializer features
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：* @since 1.2.11
+2021-03-22 12:08:59,574 - root - INFO - 不是方法方法：* @throws IOException
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,590 - root - INFO - 方法：public static final int writeJSONString(OutputStream os, Object object, SerializerFeature... features) throws IOException {
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：return writeJSONString(os, object, DEFAULT_GENERATE_FEATURE, features);
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：* @since 1.2.11
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,590 - root - INFO - 方法：public static final int writeJSONString(OutputStream os, Object object, int defaultFeatures, SerializerFeature... features) throws IOException {
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：features);
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,590 - root - INFO - 方法：return writeJSONString(os,  IOUtils.UTF8, object, SerializeConfig.globalInstance, null, null, defaultFeatures, public static final int writeJSONString(OutputStream os, Charset charset, Object object, SerializerFeature... features) throws IOException {
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：features);
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,590 - root - INFO - 方法：return writeJSONString(os, charset, object, SerializeConfig.globalInstance, null, null, DEFAULT_GENERATE_FEATURE, public static final int writeJSONString(OutputStream os, Charset charset, Object object, SerializeConfig config, SerializeFilter[] filters, String dateFormat, int defaultFeatures, SerializerFeature... features) throws IOException {
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：SerializeWriter writer = new SerializeWriter(null, defaultFeatures, features);
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,590 - root - INFO - 方法：try {
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：JSONSerializer serializer = new JSONSerializer(writer, config);
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：if (dateFormat != null && dateFormat.length() != 0) {
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：serializer.setDateFormat(dateFormat);
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：serializer.config(SerializerFeature.WriteDateUseDateFormat, true);
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：if (filters != null) {
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：for (SerializeFilter filter : filters) {
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：serializer.addFilter(filter);
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：serializer.write(object);
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：int len = writer.writeToEx(os, charset);
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：return len;
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：} finally {
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：writer.close();
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,590 - root - INFO - 方法：public static final int writeJSONStringWithFastJsonConfig(OutputStream os, Charset charset, Object object, SerializeConfig config, SerializeFilter[] filters, String dateFormat, int defaultFeatures, SerializerFeature... features) throws IOException {
+2021-03-22 12:08:59,590 - root - INFO - 不是方法方法：SerializeWriter writer = new SerializeWriter(null, defaultFeatures, features);
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,605 - root - INFO - 方法：try {
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：JSONSerializer serializer = new JSONSerializer(writer, config);
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：if (dateFormat != null && dateFormat.length() != 0) {
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：serializer.setFastJsonConfigDateFormatPattern(dateFormat);
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：serializer.config(SerializerFeature.WriteDateUseDateFormat, true);
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：if (filters != null) {
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：for (SerializeFilter filter : filters) {
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：serializer.addFilter(filter);
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：serializer.write(object);
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：int len = writer.writeToEx(os, charset);
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：return len;
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：} finally {
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：writer.close();
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：// ======================================
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：@Override
+2021-03-22 12:08:59,605 - root - INFO - 方法：public String toString() {
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：return toJSONString();
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,605 - root - INFO - 方法：public String toJSONString() {
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：SerializeWriter out = new SerializeWriter();
+2021-03-22 12:08:59,605 - root - INFO - 方法：try {
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：new JSONSerializer(out).write(this);
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：return out.toString();
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：} finally {
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：out.close();
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：* @since 1.2.57
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,605 - root - INFO - 方法：public String toString(SerializerFeature... features) {
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：SerializeWriter out = new SerializeWriter(null, JSON.DEFAULT_GENERATE_FEATURE, features);
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,605 - root - INFO - 方法：try {
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：new JSONSerializer(out).write(this);
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：return out.toString();
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：} finally {
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：out.close();
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,605 - root - INFO - 方法：public void writeJSONString(Appendable appendable) {
+2021-03-22 12:08:59,605 - root - INFO - 不是方法方法：SerializeWriter out = new SerializeWriter();
+2021-03-22 12:08:59,605 - root - INFO - 方法：try {
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：new JSONSerializer(out).write(this);
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：appendable.append(out.toString());
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：} catch (IOException e) {
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：throw new JSONException(e.getMessage(), e);
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：} finally {
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：out.close();
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：* This method serializes the specified object into its equivalent representation as a tree of
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：* {@link JSONObject}s.
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：*
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,621 - root - INFO - 方法：public static Object toJSON(Object javaObject) {
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：return toJSON(javaObject, SerializeConfig.globalInstance);
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：* @deprecated
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,621 - root - INFO - 方法：public static Object toJSON(Object javaObject, ParserConfig parserConfig) {
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：return toJSON(javaObject, SerializeConfig.globalInstance);
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：@SuppressWarnings("unchecked")
+2021-03-22 12:08:59,621 - root - INFO - 方法：public static Object toJSON(Object javaObject, SerializeConfig config) {
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：if (javaObject == null) {
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：return null;
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,621 - root - INFO - 方法：if (javaObject instanceof JSON) {
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：return javaObject;
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,621 - root - INFO - 方法：if (javaObject instanceof Map) {
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：Map<Object, Object> map = (Map<Object, Object>) javaObject;
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：int size = map.size();
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：Map innerMap;
+2021-03-22 12:08:59,621 - root - INFO - 方法：if (map instanceof LinkedHashMap) {
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：innerMap = new LinkedHashMap(size);
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：} else if (map instanceof TreeMap) {
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：innerMap = new TreeMap();
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：} else {
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：innerMap = new HashMap(size);
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：JSONObject json = new JSONObject(innerMap);
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：for (Map.Entry<Object, Object> entry : map.entrySet()) {
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：Object key = entry.getKey();
+2021-03-22 12:08:59,621 - root - INFO - 不是方法方法：String jsonKey = TypeUtils.castToString(key);
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：Object jsonValue = toJSON(entry.getValue(), config);
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：json.put(jsonKey, jsonValue);
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：return json;
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,637 - root - INFO - 方法：if (javaObject instanceof Collection) {
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：Collection<Object> collection = (Collection<Object>) javaObject;
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：JSONArray array = new JSONArray(collection.size());
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：for (Object item : collection) {
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：Object jsonValue = toJSON(item, config);
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：array.add(jsonValue);
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：return array;
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,637 - root - INFO - 方法：if (javaObject instanceof JSONSerializable) {
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：String json = JSON.toJSONString(javaObject);
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：return JSON.parse(json);
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：Class<?> clazz = javaObject.getClass();
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,637 - root - INFO - 方法：if (clazz.isEnum()) {
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：return ((Enum<?>) javaObject).name();
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,637 - root - INFO - 方法：if (clazz.isArray()) {
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：int len = Array.getLength(javaObject);
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：JSONArray array = new JSONArray(len);
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：for (int i = 0; i < len; ++i) {
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：Object item = Array.get(javaObject, i);
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：Object jsonValue = toJSON(item);
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：array.add(jsonValue);
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：return array;
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：if (ParserConfig.isPrimitive2(clazz)) {
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：return javaObject;
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：ObjectSerializer serializer = config.getObjectWriter(clazz);
+2021-03-22 12:08:59,637 - root - INFO - 方法：if (serializer instanceof JavaBeanSerializer) {
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：JavaBeanSerializer javaBeanSerializer = (JavaBeanSerializer) serializer;
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：JSONObject json = new JSONObject();
+2021-03-22 12:08:59,637 - root - INFO - 方法：try {
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：Map<String, Object> values = javaBeanSerializer.getFieldValuesMap(javaObject);
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：for (Map.Entry<String, Object> entry : values.entrySet()) {
+2021-03-22 12:08:59,637 - root - INFO - 不是方法方法：json.put(entry.getKey(), toJSON(entry.getValue(), config));
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：} catch (Exception e) {
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：throw new JSONException("toJSON error", e);
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：return json;
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：String text = JSON.toJSONString(javaObject, config);
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：return JSON.parse(text);
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,652 - root - INFO - 方法：public static <T> T toJavaObject(JSON json, Class<T> clazz) {
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：return TypeUtils.cast(json, clazz, ParserConfig.getGlobalInstance());
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：* @since 1.2.9
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,652 - root - INFO - 方法：public <T> T toJavaObject(Class<T> clazz) {
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：if (clazz == JSONArray.class || clazz == JSON.class || clazz == Collection.class || clazz == List.class) {
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：return (T) this;
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：return TypeUtils.cast(this, clazz, ParserConfig.getGlobalInstance());
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：* @since 1.2.33
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,652 - root - INFO - 方法：public <T> T toJavaObject(Type type) {
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：return TypeUtils.cast(this, type, ParserConfig.getGlobalInstance());
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：* @since 1.2.33
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,652 - root - INFO - 方法：public <T> T toJavaObject(TypeReference typeReference) {
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：Type type = typeReference != null ? typeReference.getType() : null;
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：return TypeUtils.cast(this, type, ParserConfig.getGlobalInstance());
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：private final static ThreadLocal<byte[]> bytesLocal = new ThreadLocal<byte[]>();
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：private static byte[] allocateBytes(int length) {
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：byte[] chars = bytesLocal.get();
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：if (chars == null) {
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：if (length <= 1024 * 64) {
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：chars = new byte[1024 * 64];
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：bytesLocal.set(chars);
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：} else {
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：chars = new byte[length];
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：} else if (chars.length < length) {
+2021-03-22 12:08:59,652 - root - INFO - 不是方法方法：chars = new byte[length];
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：return chars;
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：private final static ThreadLocal<char[]> charsLocal = new ThreadLocal<char[]>();
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：private static char[] allocateChars(int length) {
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：char[] chars = charsLocal.get();
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：if (chars == null) {
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：if (length <= 1024 * 64) {
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：chars = new char[1024 * 64];
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：charsLocal.set(chars);
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：} else {
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：chars = new char[length];
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：} else if (chars.length < length) {
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：chars = new char[length];
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：return chars;
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：* @deprecated Please use {@link com.alibaba.fastjson.JSONValidator} instead.
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,668 - root - INFO - 方法：public static boolean isValid(String str) {
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：if (str == null || str.length() == 0) {
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：return false;
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：JSONScanner lexer = new JSONScanner(str);
+2021-03-22 12:08:59,668 - root - INFO - 方法：try {
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：lexer.nextToken();
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：final int token = lexer.token();
+2021-03-22 12:08:59,668 - root - INFO - 方法：switch (token) {
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：case JSONToken.LBRACE:
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：if (lexer.getCurrent() == JSONLexer.EOI) {
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：return false;
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：lexer.skipObject(true);
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：break;
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：case JSONToken.LBRACKET:
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：lexer.skipArray(true);
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：break;
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：case JSONToken.LITERAL_INT:
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：case JSONToken.LITERAL_STRING:
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：case JSONToken.LITERAL_FLOAT:
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：case JSONToken.LITERAL_ISO8601_DATE:
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：case JSONToken.NULL:
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：case JSONToken.TRUE:
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：case JSONToken.FALSE:
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：lexer.nextToken();
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：break;
+2021-03-22 12:08:59,668 - root - INFO - 不是方法方法：default:
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：return false;
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：return lexer.token() == JSONToken.EOF;
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：} catch (Exception ex) {
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：return false;
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：} finally {
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：lexer.close();
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：* @deprecated Please use {@link com.alibaba.fastjson.JSONValidator} instead.
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,683 - root - INFO - 方法：public static boolean isValidObject(String str) {
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：if (str == null || str.length() == 0) {
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：return false;
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：JSONScanner lexer = new JSONScanner(str);
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,683 - root - INFO - 方法：try {
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：lexer.nextToken();
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：final int token = lexer.token();
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：if (token == JSONToken.LBRACE) {
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：if (lexer.getCurrent() == JSONLexer.EOI) {
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：return false;
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：lexer.skipObject(true);
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：return lexer.token() == JSONToken.EOF;
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：return false;
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：} catch (Exception ex) {
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：return false;
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：} finally {
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：lexer.close();
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：/**
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：* @deprecated Please use {@link com.alibaba.fastjson.JSONValidator} instead.
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：*/
+2021-03-22 12:08:59,683 - root - INFO - 方法：public static boolean isValidArray(String str) {
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：if (str == null || str.length() == 0) {
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：return false;
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：JSONScanner lexer = new JSONScanner(str);
+2021-03-22 12:08:59,683 - root - INFO - 方法：try {
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：lexer.nextToken();
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：final int token = lexer.token();
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：if (token == JSONToken.LBRACKET) {
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：lexer.skipArray(true);
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：return lexer.token() == JSONToken.EOF;
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：return false;
+2021-03-22 12:08:59,683 - root - INFO - 不是方法方法：} catch (Exception ex) {
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：return false;
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：} finally {
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：lexer.close();
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,699 - root - INFO - 方法：public static <T> void handleResovleTask(DefaultJSONParser parser, T value) {
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：parser.handleResovleTask(value);
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,699 - root - INFO - 方法：public static void addMixInAnnotations(Type target, Type mixinSource) {
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：if (target != null && mixinSource != null) {
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：mixInsMapper.put(target, mixinSource);
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,699 - root - INFO - 方法：public static void removeMixInAnnotations(Type target) {
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：if (target != null) {
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：mixInsMapper.remove(target);
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,699 - root - INFO - 方法：public static void clearMixInAnnotations() {
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：mixInsMapper.clear();
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,699 - root - INFO - 方法：public static Type getMixInAnnotations(Type target) {
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：if (target != null) {
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：return mixInsMapper.get(target);
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：return null;
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：public final static String VERSION = "1.2.76";
+2021-03-22 12:08:59,699 - root - INFO - 不是方法方法：}
+2021-03-22 12:08:59,699 - root - INFO - 关闭文件
+
+Process finished with exit code 0
