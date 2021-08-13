@@ -1,5 +1,7 @@
 # 一、比赛相关
 
+地址：https://www.oschina.net/2020-openeuler
+
 ## 1.题目名称
 
 对主流语言(Python，Java，Go，PHP，JavaScript等选其一)开发的软件包依赖的API进行提取，与提供的API提取
